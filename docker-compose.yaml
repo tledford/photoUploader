@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+    photo-uploader:
+        build:
+            context: .
+            dockerfile: ./Dockerfile.dev
+        container_name: photo-uploader
+        restart: unless-stopped
+        ports:
+            - 8030:80
+        volumes:
+            - ./app:/var/www/html
+        labels:
+            - traefik.http.routers.photo-uploader.rule=Host(`photos.steebly.com`)
+            - traefik.http.routers.photo-uploader.tls=true
+            - traefik.http.routers.photo-uploader.tls.certresolver=le
+        networks:
+            - web
+
+networks:
+  web:
+    external: true
