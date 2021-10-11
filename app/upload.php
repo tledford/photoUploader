@@ -7,6 +7,10 @@
     $creator = str_replace("./","",$creator);
     $creator = str_replace("..","",$creator);
     $creator = str_replace("/","",$creator);
+    $creator = str_replace("*","",$creator);
+    $creator = str_replace("scp","",$creator);
+    $creator = str_replace("&","",$creator);
+    $creator = str_replace(" ","",$creator);
     $tempFile = $_FILES['file']['tmp_name'];
     $targetPath = dirname( __FILE__ ) . $ds . $storeFolder . $ds . $creator . $ds;
     echo $targetPath;
